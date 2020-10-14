@@ -1,0 +1,18 @@
+<nav class="nav">
+  <a href='/' class="<%= query.topic ? 'passive-title' : 'active-title' %>">Home</a>
+  <%
+    const topics = {
+      Bitcoin: 'Bitcoin',
+      Entertainment: 'Entertainment',
+      Sports: 'Sports',
+      Politics: 'Politics',
+      Movie: 'Movie',
+      Technology:'Technology'
+    }
+    Object.keys(topics).forEach(key => { 
+      const className = (query.topic === key) ? 'active-title' : 'passive-title';
+  %>
+    | <a href='/news?topic=<%= key %>&page=1' class='<%= className %>'><%= topics[key] %></a>
+
+  <% }); %>
+</nav>

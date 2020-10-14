@@ -1,0 +1,26 @@
+<span class="m-l-15">
+    <%
+      const { totalPages, pageSize, articles, emoji} = news;
+      const pages = pageSize ? Math.floor(totalPages / pageSize) : 1;
+      const pagination = new Array(pages).fill(0).map((_, index) => index);
+       %>
+  </span>
+  <h2><span class="emoji">Trending</span></h2>
+  <hr />
+
+  <% articles.forEach((item, index) => {
+    const { author, title, description, url, urlToImage } = item; %>
+    <h3 class="header">Article <%=  index + 1 %></h3>
+    <div class="wrapper">
+      <% if (urlToImage) { %> 
+        <a href='<%= url %>' target='_blank'><img src="<%= urlToImage %>" class="article"></a>
+      <% } %>
+      <ul>
+        <li><span class="font-weight-700">Title:</span> <%= title || 'N/A' %></li>
+        <li><span class="font-weight-700">Description:</span> <%= description || 'N/A' %></li>
+        <li><span class="font-weight-700">Link:</span> <a href='<%= url %>' target='_blank' class='passive-title'>Find out more</a></li>
+        <li><span class="font-weight-700">Author:</span> <%= author || 'N/A' %></li>
+      </ul>
+    </div>
+    <% if (index < 9) { %> <hr /> <% } %>
+<% }); %>
